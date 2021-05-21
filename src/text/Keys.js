@@ -90,6 +90,12 @@ const Keys= {
         vin: [],
     },
     pdj:{
+        vienoiserie:[
+            {name:'Pain Choco',code: 'pn-chko',stock: 7, prix:1000,description:'Croissant au Chocolat'},
+            {name:'palmier',code: 'palmier',stock: 7, prix:1000,description:'pate feuillete saupoudree de sucre'},
+            {name:'croissant',code: 'crssant',stock: 7, prix:1000,description:'pate feuilletee beurree '},
+            {name:'feuilletes ',code: 'feuilletes',stock: 7, prix:1000,description:'pates feuillete ...'},
+        ],
         etranger:[
             {name:'Classique',code: 'clsq',stock: 7, prix:1000,description:'Brioche + Tartine + Boisson chaude'},
             {name:'Continental',code: 'cntl',stock: 7, prix:1500,description:'classique + Omelette '},
@@ -140,7 +146,7 @@ const Keys= {
         {name:'1/4 Poulet yassa',code: 'plt-yssa',stock: 7, prix:2500-3000,description:'Poulet Yassa'},
         {name:'Steak à la crême  champignons',code: 'crm-chmpgn',stock: 7, prix:3000,description:'Steak à la crême  champignons'},
         {name:'Gambas Chapallo',code: 'gms-chplo',stock: 7, prix:5000-10000,description:'Gambas Chapallo'},
-        {name:'Poulet Dolce Gabana',code: 'gms-chplo',stock: 7, prix:10000,description:'Gambas Chapallo'},
+        {name:'Poulet Dolce Gabana',code: 'plt-dlc-gbn',stock: 7, prix:10000,description:'Gambas Chapallo'},
         ],
         traditionel:[
                 {name:'Sauce jaune avec du Taro pilé',code: 'tro',stock: 7, prix:3500,description:'Taro Pilé + sauces Jaunes '},
@@ -166,7 +172,6 @@ const Keys= {
                 {name:'Pile patate',code: 'pl-ptt',stock: 7, prix:2500,description:'Patates'},
                 {name:'Pile Macabo',code: 'pl-mkbo',stock: 7, prix:3000,description:' Macabos'},
                 {name:'Pile Plantain',code: 'pl-pltn',stock: 7, prix:1500,description:'Pilés plantains'},
-                {name:'Pepe Soup aux plantains',code: 'pp-Pltn',stock: 7, prix:2500,description:'Plantains'},
                 {name:'Sauce Tomate',code: 'tmt',stock: 7, prix:2000,description:' plantains'},
                 {name:'sauce d"arachide ',code: 'archd',stock: 7, prix:1500,description:'Arachides grilles'},
             ],
@@ -230,8 +235,10 @@ const Keys= {
             {name:'Salade Mexicaine',code: 'mexicaine',stock: 7, prix:1500,description:'Salade + ... '},
             {name:'Cocktail d"avocat',code: 'cock',stock: 7, prix:2000,description:'Avocats + ... '},
             {name:'Farci de Tomate',code: 'fr6',stock: 7, prix:1000,description:'Tomate + Oignons'},
-            {name:'Macedoine',code: 'hawai',stock: 7, prix:1000,description:'Mais + ...+.... '},
+            {name:'Macedoine',code: 'mcdn',stock: 7, prix:1000,description:'Mais + petite pois +.... '},
             ],
-    }
+    },
+    'fast food':[],
 }
+//ORDRE PDJ, ENTREES, PLATS CHAUDS , DESSERTS , RAFFRAICHISSEMENT ...  FAST FOOD...
 export default Keys;

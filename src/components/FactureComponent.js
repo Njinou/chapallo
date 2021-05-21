@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View, StyleSheet,Text,Image,Pressable,TextInput,Modal,TouchableHighlight,Alert,FlatList, useColorScheme} from 'react-native';
+import {View, StyleSheet,Text,Image,Pressable,TextInput,Modal,TouchableHighlight,Alert,FlatList, useColorScheme, Button} from 'react-native';
 import Blue from '../img/bluecheck.png';
 import Cross from '../img/redcross.png';
 import cross from '../img/cross.jpeg';
@@ -39,18 +39,25 @@ const FactureComponent = (props) =>{
     // action on update of movies
 }, [category]);
 
+useEffect(() => {
+  // action on update of movies
+}, [command]);
+
     const [isChecked,setChecked] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
     const [comptable, setcomptable] = useState(0);
     const [category, setCategory] = useState("Nouvelle Commande...");
     const [sousCategory, setSousCategory] = useState(null);
-    const [command,setCommand] = useState([]);
+    const [command,setCommand] = useState({});
     const [article,setArticle] = useState({});
     const [commandTitle,setCommandTitle] = useState("Nouvelle Commande...");
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-    const [quantite,setQuantite] = useState(0);
-
+    const [toggleCheckBox, setToggleCheckBox] = useState([])
+    const [quantite,setQuantite] = useState([]);
+    const [vall, setVal] = useState(false);
+    const [asdsd,setAasssad] = useState([]);
+    const [detail, setDetail] = useState("");
+    const [placeholder, setPlaceholder] = useState("Les details de la commande...");
     const [tab, setTab] = useState([
       {   
           "id":'123',
@@ -59,7 +66,6 @@ const FactureComponent = (props) =>{
           "country": "Atlanta"
       }
   ]);
-
     const refreshingFunc = () =>{
       setRefreshing(true);
     }
@@ -72,153 +78,33 @@ const FactureComponent = (props) =>{
     const propSetChecked = () =>{
         console.log("settig the check point...");
     }
-
+    
     const funcIsCheck = () =>{
         console.log("settig the check funcSetTab...");
     }
-    
-   //const donne = [{"age": "15", "country": "Atlanta", "id": "123", "name": "ananta"}, {"age": "990", "id": 1, "name": "Tony Montana sdfsdfds "}, {"age": "990", "id": 2, "name": "Tony Montana sdfsdfds "}, {"age": "990", "id": 3, "name": "Tony Montana sdfsdfds "}, {"age": "990", "id": 4, "name": "Tony Montana sdfsdfds "}];
-    
-     
     const funcSetTab = (val) =>{
         setTab(val);
     }
-
-    const addCommand = () =>{
-      /*
-       setCategory("Petit Dejeuner");
-        console.log(category);
-                      let val =command;
-                      if( category && val.hasOwnProperty(category)){  
-                        console.log("INside!!!!!!!!!");
-                        val[`${category}`].push({nom:'argent',category:category})
-
-                        setCommand(val);
-                      console.log('val val',val);
-                      console.log('command',command);
-
-                      } else if (category){
-                        console.log(category);
-                      val[`${category}`]=[{nom:'inspiration',category:'category  category '}];
-
-                      setCommand(val);
-                      console.log('val val',val);
-                      console.log('command',command);
-                      }   */   
-                                 
+    const getSearchList = async () => {
+      console.log("Je ne suis pas la dedans");
+      
     }
-//'#A9A9A9'  '#B9A9A9' '#A9B9A9' '#A9A9B9' '#AAA9A9'
-//textDecorationLine: 'line-through',
-/*
-searchFeatured = value => {
-  const filterFeatured = [
-    ...this.state.latestuploadsApiData,
-    ...this.state.featuredspeakersApiData
-  ].filter(item => {
-    const searchString = `${item.name} ${item.title}`;
 
-    return (
-      searchString && searchString.toLowerCase().includes(value.toLowerCase())
-    );
-  });
-
-  // both arrays will have the same data
-  this.setState({
-    featuredspeakers: filterFeatured,
-    latestuploads: filterFeatured
-  });
-
-  boissons//=>  biere top  etrangere eau jus liqueur vin
-  pdj //=>etranger local boissonsChaude  infusion
-             plats //=> accompagnement  chaud traditionel  legume
-             entrees //=> patisserie oeuvre
-
- ["drink", "pdj", "plats", "desserts", "grill", "entrees"]
-
-*/
-/*console.log('drink',Object.keys(Keys['drink']));
-console.log('pdj',Object.keys(Keys['pdj']));
-console.log('plats',Object.keys(Keys['plats']));
-console.log('desserts',Object.keys(Keys['desserts']));
-console.log('grill',Object.keys(Keys['grill']));
-console.log('entrees',Object.keys(Keys['entrees']));*/
-
-
-/*
-
-
-                  
-                  <>
-                  
-                  <TouchableHighlight
-                     style={{ ...styles.openButton, backgroundColor: "#A9A9A9" ,margin:5}}
-                     onPress={() => {
-                       setCategory('pdj');
-                       setSelection(true);
-                       console.log(category);
-                     }}
-                   >
-                     <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Petit Dejeuner</Text>
-                   </TouchableHighlight>
- 
-                   <TouchableHighlight
-                       style={{ ...styles.openButton, backgroundColor: "#A9A9A9" ,margin:5}}
-                       onPress={() => {
-                         console.log("Inside.... Entree");
-                         setCategory("entrees");
-                       }}
-                     >
-                       <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Entree</Text>
-                     </TouchableHighlight>
-
-                     <TouchableHighlight
-                       style={{ ...styles.openButton, backgroundColor: "#A9A9A9" ,margin:5}}
-                       onPress={() => {
-                         console.log("Inside.... Plats Chauds.... ");
-                         setCategory("plats");
-                       }}
-                     >
-                       <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Plats Chauds</Text>
-                     </TouchableHighlight>
-                   
- 
-                   <TouchableHighlight
-                       style={{ ...styles.openButton, backgroundColor: "#A9A9A9",margin:5 }}
-                       onPress={() => {
-                         console.log("Inside.... Desserts ");
-                         setCategory("desserts");
-                         console.log(category);
-                       }}
-                     >
-                       <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Desserts</Text>
-                     </TouchableHighlight>
- 
-                  <TouchableHighlight
-                     style={{ ...styles.openButton, backgroundColor: "#A9A9A9",margin:5 }}
-                     onPress={() => {
-                       console.log("Inside.... Boissons... ");
-                       setCategory("drink");
-                     }}
-                   >
-                     <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Boissons</Text>
-                   </TouchableHighlight>
-                   
-                    <TouchableHighlight
-                     style={{ ...styles.openButton, backgroundColor: "#A9A9A9",margin:5 }}
-                     onPress={() => {
-                       console.log("grill");
-                       setCategory("grill");
-                     }}
-                   >
-                     <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22}}>Grillades</Text>
-                   </TouchableHighlight> 
-                   </>
-
-
-*/
-
-// command =
-
+    const  filterObjects = (objects) =>{
+      var filtered = {};
+      var keys = Object.keys(objects);
+      for (var i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          if (objects.hasOwnProperty(key)) {
+              var object = objects[key];
+              if (object.quantite >0)
+              {
+                filtered[key] = object;
+              }
+          }
+      }
+      return filtered;
+  }
     return (
         <>
           <FlatList
@@ -229,6 +115,7 @@ console.log('entrees',Object.keys(Keys['entrees']));*/
             renderItem={({ item }) => <CommandLists comptableFunc={comptableFunc} refresh={refreshingFunc} comptable={comptable} item={item} tab={tab} isChecked={isChecked}  func={propSetChecked} funcIsCheck={funcIsCheck}  funcSetTab={funcSetTab} />}
             keyExtractor={item => item.id +""}
           />
+         
       <View style={{justifyContent:'center',marginLeft:25,marginRight:25,marginTop:20,flexDirection:'row'}}>
                 <TextInput style={{backgroundColor:'white',alignSelf:'stretch'}} onTextChange={()=>console.log('Hello world')} placeholder='Ajouter une Commande'/>
                 <Pressable style={{alignSelf:'center',backgroundColor:'#A9A9A9',marginLeft:5,paddingRight:5}} onPress={()=> setModalVisible(!modalVisible)}>
@@ -251,95 +138,122 @@ console.log('entrees',Object.keys(Keys['entrees']));*/
               onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
               }}
-            >
-             
-              <View style={styles.centeredView,{width:'90%',alignSelf:'center',paddingTop:'10%',marginBottom:'15%',}}>
+            > 
+             <View style={styles.centeredView,{width:'90%',alignSelf:'center',paddingTop:'10%',marginBottom:'15%',}}>
                
                <View style={styles.modalView}>
-                 <>
-                  <Text style={[styles.modalText,{fontWeight:'bold',fontSize:25,color:'#AAA9A9',textDecorationLine: 'underline'}]}> {category}</Text>
+                 <View>
+                  <Text style={[styles.modalText,{fontWeight:'bold',fontSize:25,color:'#AAA9A9',textDecorationLine: 'underline'}]} onPress={() => {setSousCategory(null); setCategory(null)} }> {category}</Text>
                   <FlatList
                       data={ !sousCategory && (Keys[category] && Object.keys(Keys[category])  ||  (Keys && Object.keys(Keys)))  ||  (sousCategory && Keys[category][sousCategory]) || [] }
                       renderItem={({item}) => 
                           <View key={item?.code} >  
 
               {  (sousCategory && Keys[category][sousCategory]) ?
+                <>
                 <View style={{flex:1,flexDirection:'row',padding:1,justifyContent:'center',alignItems:'center',alignSelf:'center',margin:5,}}> 
                   <CheckBox
                     disabled={false}
-                    value={toggleCheckBox}
+                    value= {  command[item.code] && command[item.code].picked || false} //{toggleCheckBox[item.code]}
                     onValueChange={(newValue) => {
-                                  setToggleCheckBox(newValue);
-                                  console.log('newValue item ',item);
-                                  newValue? setQuantite(1) : setQuantite(0);
-                                }
-                              }
-              />
+                                  
+                                  let commandTemp = command ? command : {};
+                                  let elmt = commandTemp[item.code] || {quantite:  0 , picked: false,  supplement:""};
+                                  let NOUVELLEValue =  {quantite:  newValue ? (elmt.quantite ? elmt.quantite + 1: 1) : 0, picked: newValue,  supplement:"",category:category,sousCategory:sousCategory}; 
+                                  commandTemp[item.code] = NOUVELLEValue;
+                                  setCommand(filterObjects(commandTemp));
+                                  console.log(filterObjects(command));
+                      }
+                    }
+              /> 
                   <View style={{ borderTopLeftRadius:8,borderTopRightRadius:1,borderBottomRightRadius:5,borderBottomLeftRadius:1,backgroundColor: "#1E90FF" ,justifyContent:'flex-start',alignItems:'center',width:'50%',marginLeft:5}}> 
                       <Text  style={styles.textStyle,{padding:5,color:'white',fontSize:18,textAlign:'center',textAlign:'center',textAlignVertical:'top',overflow: 'scroll'}}>{typeof(item) === 'string'? item : item?.description}</Text>
                   </View>
-
-
-
+                   
                   <View style={{flexDirection:'row',paddingRight:1,justifyContent:'flex-end',marginLeft:10}}>
-                      {quantite >=1 ?<View style={{backgroundColor:'#AAA9A9',alignItems:'center',justifyContent:'center',borderTopLeftRadius:5,borderBottomLeftRadius:1,paddingLeft:'3%',paddingRight:'3%'}}>
+                      {command[item.code] && command[item.code].quantite >=1 ?<View style={{backgroundColor:'#AAA9A9',alignItems:'center',justifyContent:'center',borderTopLeftRadius:5,borderBottomLeftRadius:1,paddingLeft:'3%',paddingRight:'3%'}}>
                           <Text style={{color:'gray',fontSize:25}} onPress={() => {
-                              quantite <= 1? setToggleCheckBox(false) : setToggleCheckBox(true);
-                              setQuantite(quantite - 1);
-                              
+                                  let commandTemp =  command ? command : {};
+                                  let elmt = commandTemp[item.code] || {quantite:  0, picked: false,  supplement:""};
+                                  let NOUVELLEValue =  {quantite: commandTemp[item.code].quantite> 0 ?commandTemp[item.code].quantite - 1 :0, picked: true,  supplement:"",category:category,sousCategory:sousCategory}; 
+                                  commandTemp[item.code] = NOUVELLEValue;
+                                  setCommand(filterObjects(commandTemp));
+                                  console.log('Minus minus minus ',command);
+
                             }
                             }>-</Text>
                       </View>:null}
                       <View style={{backgroundColor:'#F0FFFF',alignItems:'center',justifyContent:'center',paddingLeft:'1%',paddingRight:'1%'}}>
                           <Text style={{fontWeight:'bold',color:'#AAA9A9'}}>
-                            {quantite}
+                            {  command[item.code]? command[item.code] &&  command[item.code].quantite : 0 }
                           </Text>
                       </View>
                       <View style={{backgroundColor:'#AAA9A9',alignItems:'center',justifyContent:'center',borderTopRightRadius:1,borderBottomRightRadius:5,paddingLeft:'2%',paddingRight:'2%'}}>
                           <Text style={{color:'gray',fontSize:25}}  onPress={() => {
-                              setQuantite(quantite+1);
-                              setToggleCheckBox(true);
+                           let commandTemp =  command ? command : {};
+                                  let elmt = commandTemp[item.code] || {quantite:  0, picked: false,  supplement:""};
+                                  let NOUVELLEValue =  {quantite: commandTemp[item.code] && commandTemp[item.code].quantite ? commandTemp[item.code].quantite + 1 : 1 , picked: true,  supplement:"",category:category,sousCategory:sousCategory}; 
+                                  commandTemp[item.code] = NOUVELLEValue;
+                                  setCommand(filterObjects(commandTemp));
+                                  console.log("voici la nouvelle valeur de..",command);
                             }
-                            }>+</Text>
+                            }>+</Text>  
                       </View>
                         
                         <View style={{justifyContent:'center',marginRight:'auto',marginLeft:'auto'}}>
-                        <Text > { quantite * Number (item?.prix)}</Text>
+                          <Text > {  command[item.code] && command[item.code].quantite ? Number( command[item.code].quantite)  * Number (item?.prix): item?.prix}</Text>
                         </View>
-                      
-                    </View>
+                  </View>
+                </View> 
 
-
-                </View> : 
+                {command[item.code]? <TextInput
+                    style={styles.input}
+                    onChangeText={(val)=> {
+                      let commandTemp =  command ? command : {};
+                      let elmt = commandTemp[item.code] || {quantite:  0, picked: false,  supplement:""};
+                      let NOUVELLEValue =  {quantite: commandTemp[item.code].quantite  , picked: commandTemp[item.code].picked,  supplement:val,category:category,sousCategory:sousCategory}; 
+                      commandTemp[item.code] = NOUVELLEValue;
+                      console.log('TextInput.... so on.....  ',command);
+                      setDetail(val);
+                    } }
+                    value={command[item.code].supplement || ''}
+                    placeholder='Entrez les details de la commande...'
+                  />  : null}
+                </>
+                : 
                 <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: Keys[category]  && 'black' || "#A9A9A9" ,margin:5}}
                 onPress={() => {
                   Keys[category]? setSousCategory(item): setCategory(item);
-                  console.log('sous category',sousCategory);
-                  console.log('AVANT SOUS  category',category);
                   sousCategory && console.log(Keys[category][sousCategory]);
-                  //Keys[category]? setCategory(item) : setSousCategory(item);
-                //  Keys[category][sousCategory] && console.log(Keys[category][sousCategory] );
                 }}
               >
                 <Text style={styles.textStyle,{padding:2,color:'white',fontSize:22,textAlign:'center'}}>{typeof(item) === 'string'? item : item?.description}</Text>
               </TouchableHighlight>
                 }
-
-                            
-                           
-                          </View> 
+              </View> 
                       }
                       keyExtractor={item => typeof(item) === 'string'? item : item?.code}
                     />
-                 </> 
+
+                <Button
+                style={{flex:1,fontSize:40}}
+                onPress={() => Alert.alert("Je Ne suis pas dacord")}
+                title="Valider la Commande...."
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+              />
+                 </View> 
                 </View>
               </View>
             </Modal>
           </View>
+
   </>
     );
 }
+const PureFactureComponent = React.PureComponent (FactureComponent);
+
 const styles= StyleSheet.create({
     scrollView: {
         backgroundColor: 'blue',
@@ -389,7 +303,12 @@ const styles= StyleSheet.create({
       modalText: {
         marginBottom: 15,
         textAlign: "center"
-      }
+      },
+      input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+      },
 
 });
-export default FactureComponent;
+export default React.memo(FactureComponent);
